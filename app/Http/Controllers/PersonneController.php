@@ -24,13 +24,26 @@ class PersonneController extends Controller{
 		return 'Le nom est ' . $request->input('nom') . ' ' .$request->input('prenom'); 
 	}
 
+
+    public function index(){
+      //$categories = Categorie::get();
+      //return view('categorie',['categorie' => $categories]);
+      //return "Test..";
+      //return View::make('categories.index',compact('categories'));
+
+      $personnes = Personne::all()->toArray();
+      return view('personnes.index', compact('personnes'));
+
+      //return view('categorie');
+    }
+
   	/**
      * Show the form for creating a new person.
      *
      * @return \Illuminate\Http\Response
      */
     public function create(){
-        return view('personne.create');
+        return view('personnes.create');
     }
 
   	/**
@@ -38,32 +51,52 @@ class PersonneController extends Controller{
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
-        //$personne = Personne::all()->toArray();
-        //return view('personne.index', compact('personne'));
+    /*public function index(){
         return view('personne');
-    }
+    }*/
 
 	public function store(Request $request){
+   //return 'look: '. $request->input('nom') .' --- '. $request->input('birthday');
+
+
 		$personne = $this->validate(request(), [
+          //'id_personne' => 'required',
           'nom' => 'required',
           'prenom' => 'required',
-          'birthday' => 'required',
-          'place_of_birthday' => 'required',
+          'date_de_naissance' => 'required',  //|date_format:dd/mm/YYYY            ---------- |date_format:aaaa-mm-dd
+          'lieu_de_naissance' => 'required',
           'genre' => 'required',
           'id_national' => 'required',
           'etat_civil' => 'required',
-		  'nationality' => 'required',
-		  'address' => 'required',
-		  'gsm' => 'required',
-		  'phone' => 'required',
-		  'email' => 'required'
+		      'nationalite' => 'required',
+		      'adresse' => 'required',
+		      'gsm' => 'required',
+		      'telephone' => 'required',
+		      'mail' => 'required',
+          'numero_ibis' => 'required',
+          'permis_de_conduire' => 'required',
+          'etude' => 'required',
+          'formation' => 'required',
+          'moment_de_formation' => 'required',
+          'nbre_heures_par_periode' => 'required',
+          'inoccupation' => 'required'
         ]);
 
-        Personne::create($personne);
-        return back()->with('success', 'Person has been added'); 
-    	
+    Personne::create($personne);
+    return back()->with('success', 'Person has been added');
+
+    //$personne = Personne::create($request->all());
+    //return back()->with('success', 'Person has been added'); 
+    
+    //return redirect(route('personne.edit', $personne));	
   	}
+
+    public function destroy($id){
+      $personne = Personne::find($id);
+      $personne->delete();
+
+      return redirect('personnes')->with('success','Person has been  deleted');
+    }
     
 }
 

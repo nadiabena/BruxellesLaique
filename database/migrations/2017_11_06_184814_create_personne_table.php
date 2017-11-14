@@ -16,7 +16,7 @@ class CreatePersonneTable extends Migration{
 
             $table->string('nom');
             $table->string('prenom');
-            $table->dateTime('date_de_naissance');
+            $table->date('date_de_naissance');  //dateTime
             $table->string('lieu_de_naissance');
             $table->string('id_national');
             $table->string('numero_ibis');

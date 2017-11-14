@@ -164,10 +164,13 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+        // //'Illuminate\Html\HtmlServiceProvider',
+
         /*
          * Package Service Providers...
          */
 
+        //'Illuminate\Html\HtmlServiceProvider',
         /*
          * Application Service Providers...
          */
@@ -177,6 +180,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        'Barryvdh\Debugbar\ServiceProvider',
+
+
+        //'Collective\Html\HtmlServiceProvider',
     ],
 
     /*
@@ -225,6 +232,15 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        'Debugbar' => 'Barryvdh\Debugbar\Facade', // Permet d'activer la barre
+
+        'Form'      => 'Illuminate\Html\FormFacade',
+        'Html'      => 'Illuminate\Html\HtmlFacade'
+
+
+        //'Form' => 'Collective\Html\FormFacade',
+        //'Html' => 'Collective\Html\HtmlFacade',
 
     ],
 
