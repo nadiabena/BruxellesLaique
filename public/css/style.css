@@ -1,0 +1,8 @@
+.resultat {
+  position: absolute;
+  background: white;
+  border-radius: 	0px 0px 10px 10px;
+  width: 258px;
+  height: auto;
+  /*padding: 10px 10px;*/
+}

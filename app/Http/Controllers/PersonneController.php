@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Personne;
+use App\ListeDocuments;
 
 //namespace database\migrations;	
 //use Illuminate\Database\Eloquent\Model;
@@ -31,8 +32,16 @@ class PersonneController extends Controller{
       //return "Test..";
       //return View::make('categories.index',compact('categories'));
 
-      $personnes = Personne::all()->toArray();
-      return view('personnes.index', compact('personnes'));
+      /*$personnes = Personne::all()->toArray();
+      return view('personnes.index', compact('personnes'));*/
+
+
+
+
+      $personnes = Personne::all()->toArray();  
+      $liste_documents = ListeDocuments::all()->toArray();
+      return view('personnes.index', compact('personnes','liste_documents'));
+
 
       //return view('categorie');
     }

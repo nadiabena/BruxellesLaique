@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
   </head>
+
   <body>
     <h1> Listing des personnes </h1>
     <div class="container">
@@ -50,17 +50,43 @@
         <td>
           <div class="form-group"> 
            <!--  {!! Form::label('Télécharger un document') !!} -->
-          {!! Form::open() !!}  <!-- ['url' => '/'] -->
-            {!! Form::file('image', null) !!}
-            {!! Form::submit('Upload ', ['class' => 'btn']) !!}
-          {!! Form::close() !!}
-     
+            @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div> <br/>
+            @endif
+            
+            <!-- $personne['id_personne']
+           --> 
+            <!-- egals to enctype="multipart/form-data" -->
+
+           <!-- {!! Form::open( array('files'=> true) ) !!}   ['url' => '/']  
+              {!! Form::label('nom', 'Intitulé : ') !!}
+              {!! Form::text('intitule') !!}
+              
+              {!! Form::file('document', null) !!}
+              
+              {!! Form::submit('Upload ', ['class' => 'btn']) !!}
+            {!! Form::close() !!}   -->
+
+
+          <form style="border:1px solid red" action="{{action('UploadController@uploadSubmit', $personne['id_personne'])}}" method="POST" enctype="multipart/form-data">
+              {{ csrf_field() }}
+              Intitulé: <input type="text" name="intitule" />
+              <input type="file" name="documents[]" id="id_documents" multiple />
+              <input type="hidden" name="id_personne" value="{{$personne['id_personne']}}">
+              <br/>
+              <input type="submit" value="Upload" />
+          </form>
+
           </div>
 
           <!-- <button class="btn">Télécharger document</button> -->
         </td>
-
-
       </tr>
       @endforeach
     </tbody>
@@ -73,7 +99,7 @@
   <!-- Modal -->
   <div class="modal fade" id="idModal" role="dialog">
     <div class="modal-dialog">
-    
+
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -81,7 +107,15 @@
           <h4 style="color:green" class="modal-title">Liste des pièces jointes</h4>
         </div>
         <div class="modal-body">
-          <p>Parcourir la table liste_documents</p>
+
+          @foreach($liste_documents as $document) 
+            <p><a href="<?= $document['document']?>" data-toggle="tooltip" title="Télécharger" download> {{ $document['intitule_document']}} </a> </p>
+          @endforeach
+
+          <!-- <div class="tooltip">Hover over me
+           <span class="tooltiptext">Télécharger</span>
+          </div> -->
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
@@ -90,10 +124,6 @@
       
     </div>
   </div>
-
-
-
-
 
 
   <div style="text-align:center">
@@ -106,4 +136,11 @@
   </div>
 
   </body>
+
+<script>
+  $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();   
+  });
+</script>
+
 </html>

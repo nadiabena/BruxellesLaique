@@ -58,3 +58,57 @@ Route::resource('categories','CategorieController');
 
 //Route::get('bruxellesLaique/categorie', 'CategorieController@index');
 
+//Route::resource('personnes','ListeDocumentsController');
+
+Route::get('/upload', 'UploadController@uploadForm');
+Route::post('/upload', 'UploadController@uploadSubmit'); //?{$id}
+
+
+/*Route::group('personnes', function(){
+  Route::resource('personnes', 'PersonneController');
+  Route::resource('personnes', 'ListeDocumentsController');
+});*/
+
+//Route::get('personnes/search', array('as'=>'search_bar','uses'=>'SearchPersonneController@index'));
+
+//Route::get('pers/search', 'SearchPersonneController@autocomplete');
+
+/*Route::get('nadia', function () {
+    return view('nadia');
+});*/
+
+
+
+//Route::get('/autocomplete',array('as'=>'autocomplete','uses'=>'SearchPersonneController@autocomplete'));
+
+Route::resource('pers/search','SearchPersonneController');
+
+Route::get('pers/search', 'SearchPersonneController@index');
+Route::post('pers/search', 'SearchPersonneController@autocomplete');
+
+
+/*Route::get('pers/search_bar/{keyword}', function($keyword){
+  if (Request::ajax()) {
+    $personnes = App\Personne::where('nom','like', '%'.$keyword.'%')->get();
+    foreach ($personnes as $value) {
+      return '<div class="row-result">
+                <div class="col-md-8">
+                  <p class="text_search">'.$value->nom.'</p>
+                </div>
+              </div>';
+    }
+  }
+});
+*/
+
+
+//Partie admin
+//Route::post('login', [ 'as' => 'login', 'uses' => 'LoginController']);
+
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+
+
