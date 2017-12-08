@@ -32,6 +32,7 @@
     </thead>
     <tbody>
       @foreach($personnes as $personne)
+      <?php $v = $personne['id_personne'];?>
       <tr>
         <td>{{$personne['id_personne']}}</td>
         <td>{{$personne['nom']}}</td>
@@ -45,7 +46,11 @@
           </form>
         </td>
 
-        <td><button class="btn btn-warning" data-toggle="modal" data-target="#idModal">Consulter les pièces jointes</button></td>
+        <td><button data-id="{{ $personne['id_personne']}}" name="liste_doc" class="id_button" class="btn btn-warning" data-toggle="modal" data-target="#idModal">Consulter les pièces jointes {{ $personne['id_personne'] }} </button>
+
+ 
+
+        </td>
 
         <td>
           <div class="form-group"> 
@@ -59,7 +64,7 @@
                   </ul>
               </div> <br/>
             @endif
-            
+
             <!-- $personne['id_personne']
            --> 
             <!-- egals to enctype="multipart/form-data" -->
@@ -96,34 +101,7 @@
 
 
 
-  <!-- Modal -->
-  <div class="modal fade" id="idModal" role="dialog">
-    <div class="modal-dialog">
 
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 style="color:green" class="modal-title">Liste des pièces jointes</h4>
-        </div>
-        <div class="modal-body">
-
-          @foreach($liste_documents as $document) 
-            <p><a href="<?= $document['document']?>" data-toggle="tooltip" title="Télécharger" download> {{ $document['intitule_document']}} </a> </p>
-          @endforeach
-
-          <!-- <div class="tooltip">Hover over me
-           <span class="tooltiptext">Télécharger</span>
-          </div> -->
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
 
 
   <div style="text-align:center">
@@ -135,6 +113,8 @@
     <a href="{{ url('http://127.0.0.1:8000') }}"> <button class="btn btn-default" type="submit">Retour</button> </a>
   </div>
 
+
+  <script type="text/javascript" src="{{ asset('js/modal_refresh.js') }}"></script>  
   </body>
 
 <script>

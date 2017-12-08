@@ -7,11 +7,12 @@ $(document).ready(function(){
 
         $.ajax({
           type : "GET",  //POST? 
-          url : "SearchPersonneController@autocomplete",
+          url : "search/ajax",    //SearchPersonneController@autocomplete
           data : key,
           success : function(server_response){
-            $("#resultat").html(server_response).show();
-            $("#resultat").addClass("resultat");
+            //$("#resultat").css('color','red');
+            $(".ajax").html(server_response).show();
+            $(".ajax").addClass("resultat");
           }
         });
       }
@@ -25,15 +26,13 @@ $(document).ready(function(){
 });
 
 
-
-
 function recuperer_input(elem, e){
     e.preventDefault();
     // var url = document.location.href;
     // var get = url.searchParams.get('id');
     var newId = elem.id;
     var contenu_p = elem.innerHTML;
-    console.log(document.getElementById('recherche'));
+    //console.log(document.getElementById('recherche'));
 
     document.getElementById('recherche').value = contenu_p;
     document.getElementById('id_personne').value = newId;

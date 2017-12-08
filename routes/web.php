@@ -86,10 +86,19 @@ Route::resource('pers/search','SearchPersonneController');
 Route::get('pers/search', 'SearchPersonneController@index');
 Route::post('pers/search', 'SearchPersonneController@autocomplete');
 
+Route::get('ajax', 'SearchPersonneController@autocomplete');
 
-/*Route::get('pers/search_bar/{keyword}', function($keyword){
+Route::get('personnes/{id?}', function($id){
+  $tache = Personne::buttonModalAjax($id);
+  return Response::json($tache);
+});
+
+
+
+
+/*Route::get('pers/search_bar', function($keyword){
   if (Request::ajax()) {
-    $personnes = App\Personne::where('nom','like', '%'.$keyword.'%')->get();
+    $personnes = App\Personne::where('nom','like', '%'.'lettres'.'%')->get();
     foreach ($personnes as $value) {
       return '<div class="row-result">
                 <div class="col-md-8">
@@ -98,8 +107,8 @@ Route::post('pers/search', 'SearchPersonneController@autocomplete');
               </div>';
     }
   }
-});
-*/
+});*/
+
 
 
 //Partie admin

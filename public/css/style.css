@@ -6,3 +6,8 @@
   height: auto;
   /*padding: 10px 10px;*/
 }
+
+.ajax{
+	border:1px solid red;
+}
+

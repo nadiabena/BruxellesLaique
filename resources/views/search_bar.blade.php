@@ -54,26 +54,23 @@
 
 <!-- //, $personne['id_personne']) -->
   <div class="col-md-4 col-md-offset-2">
-    <form class="form-group" action="{{action('SearchPersonneController@autocomplete')}}" method="GET">
+    <form class="form-group" action="{{ action('SearchPersonneController@autocomplete')  }}" method="GET">
       {{csrf_field()}}
-        <input name="id_nom_recherche" size="35" type="text" id="recherche" placeholder="Rechercher un nom..">
+        <input name="nom_recherche" size="35" type="text" id="recherche" placeholder="Rechercher un nom..">
         <input type="hidden" name="id_personne" id="id_personne">
         <input id="id_zone_recherche" type="submit" value="Rechercher">
     </form>
   </div>
+<!-- {{ url('users') }}
+{{action('SearchPersonneController@autocomplete')}} -->
 
-        <!-- <div style="border:1px solid red"> -->
-          @if(isset($personne))
-            <?php  echo 'test' //include 'vue_search.php'      sizeof($personne)!=0 ?>
-          @endif
 
-<!--           @//if(sizeof($personne) == 0)
-            <?//= 'Aucun membre trouvé!' ?>
-          @//endif  -->
-        <!-- </div> -->
+        <div class="ajax" style="border:1px solid red">
+
+        </div>
+
 
 <br/><br/><br/>
-
 
          <!-- Zone d'affichage de la recherche de personne -->
            <div id="result_search">
@@ -110,7 +107,7 @@
           </div>
 
   <script type="text/javascript" src="{{ URL::asset('/js/jquery.js') }}"></script>
-  <script src="{{ URL::asset('/js/bootstrap.js') }}" type="text/javascript" ></script>
+  <script type="text/javascript" src="{{ URL::asset('/js/bootstrap.js') }}"></script>
   <script type="text/javascript" src="{{ URL::asset('/js/search.js') }}"></script>
 </body>
 

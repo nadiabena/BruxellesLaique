@@ -17,13 +17,17 @@ use App\ListeDocuments;
 class PersonneController extends Controller{
 
 	public function getInfos(){
-		return view('personne');
+	 	return view('personne');
 		//return "Ok..";
 	}
 
 	public function postInfos(Request $request){
 		return 'Le nom est ' . $request->input('nom') . ' ' .$request->input('prenom'); 
 	}
+
+    public function buttonModalAjax($idformbutton){
+      return view('modal');
+    }
 
 
     public function index(){
@@ -65,30 +69,29 @@ class PersonneController extends Controller{
     }*/
 
 	public function store(Request $request){
-   //return 'look: '. $request->input('nom') .' --- '. $request->input('birthday');
-
-
+    //return 'look: '. $request->input('nom') .' --- '. $request->input('birthday');
 		$personne = $this->validate(request(), [
           //'id_personne' => 'required',
           'nom' => 'required',
           'prenom' => 'required',
-          'date_de_naissance' => 'required',  //|date_format:dd/mm/YYYY            ---------- |date_format:aaaa-mm-dd
+          'date_de_naissance' => 'required',  //|date_format:dd/mm/YYYY  ---------- |date_format:aaaa-mm-dd
           'lieu_de_naissance' => 'required',
-          'genre' => 'required',
           'id_national' => 'required',
+          'numero_ibis' => 'required',
           'etat_civil' => 'required',
 		      'nationalite' => 'required',
 		      'adresse' => 'required',
 		      'gsm' => 'required',
 		      'telephone' => 'required',
-		      'mail' => 'required',
-          'numero_ibis' => 'required',
+		      'mail' => 'required' /*,
+          
           'permis_de_conduire' => 'required',
           'etude' => 'required',
           'formation' => 'required',
           'moment_de_formation' => 'required',
+          'genre' => 'required',
           'nbre_heures_par_periode' => 'required',
-          'inoccupation' => 'required'
+          'inoccupation' => 'required' */
         ]);
 
     Personne::create($personne);

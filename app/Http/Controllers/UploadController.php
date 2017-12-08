@@ -44,7 +44,6 @@ class UploadController extends Controller{
                 
                 $id_personne  = Input::get('id_personne');
 
-                /*$path = */
                 //dd("path: ".$document);
 
                 //$path = $request->file('document')->store('documents'); //?????????????
@@ -65,7 +64,7 @@ class UploadController extends Controller{
                 //dd('i: '.$i);
                 //$path = $document->store($i);
                 $path = $file[$key]->move(public_path().'\documents',$document->getClientOriginalName());
-                //dd('test : '.$path);
+                //dd('test : '.$path);  
 
                 //$file = $request->file('document');
                 //dd('File:'.$_FILE[$document]);
@@ -110,3 +109,14 @@ class UploadController extends Controller{
     }
 }
 
+
+/*    	$product = Product::create($request->all());
+        foreach ($request->photos as $photo) {
+            $filename = $photo->store('photos');
+            ProductsPhoto::create([
+                'product_id' => $product->id,
+                'filename' => $filename
+            ]);
+        }
+        return 'Upload successful!';
+*/

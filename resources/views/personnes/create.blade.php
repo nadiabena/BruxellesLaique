@@ -32,9 +32,6 @@
         {!! Form::label('lieu_de_naissance', 'Lieu de naissance : ') !!}
         {!! Form::text('lieu_de_naissance') !!} <br/>
 
-		    {!! Form::label('genre', 'Genre : ') !!}
-		    {!! Form::select('genre', ['-choix-', 'Femme', 'Homme']) !!} <br/>
-
         {!! Form::label('id_national', 'ID National : ') !!}
         {!! Form::text('id_national') !!} <br/>
 
@@ -44,50 +41,27 @@
         {!! Form::label('nationalite', 'Nationalité : ') !!}
         {!! Form::text('nationalite') !!} <br/>
 
-		    {!! Form::label('adresse', 'Addresse : ') !!}
+        {!! Form::label('numero_ibis', 'Numero Ibis : ') !!}
+        {!! Form::text('numero_ibis') !!} <br/><br/>        
+
+		{!! Form::label('adresse', 'Adresse : ') !!}
         {!! Form::text('adresse') !!} <br/>
 
-		    {!! Form::label('gsm', 'GSM : ') !!}
+		{!! Form::label('gsm', 'GSM : ') !!}
         {!! Form::text('gsm') !!} <br/>
 
-    		{!! Form::label('telephone', 'Téléphone Fixe : ') !!}
+        {!! Form::label('telephone', 'Téléphone Fixe : ') !!}
         {!! Form::text('telephone') !!} <br/>
 
-    		{!! Form::label('mail', 'Email : ') !!}
+    	{!! Form::label('mail', 'Email : ') !!}
         {!! Form::text('mail') !!} <br/><br/>
 
-        {!! Form::label('numero_ibis', 'Numero Ibis : ') !!}
-        {!! Form::text('numero_ibis') !!} <br/><br/>    
          
-        {!! Form::label('permis_de_conduire', 'Permis de conduire : ') !!}
-        {!! Form::text('permis_de_conduire') !!} <br/><br/> 
-
-        {!! Form::label('etude', 'Etude : ') !!}
-        {!! Form::text('etude') !!} <br/><br/>
-
-        {!! Form::label('formation', 'Formation : ') !!}
-        {!! Form::text('formation') !!} <br/><br/>
-
-        {!! Form::label('moment_de_formation', 'Moment de formation : ') !!}
-        {!! Form::date('moment_de_formation') !!} <br/><br/>
-
-        {!! Form::label('nbre_heures_par_periode', "Nombre d'heures par période: ") !!}
-        {!! Form::text('nbre_heures_par_periode') !!} <br/><br/>
-
-        {!! Form::label('inoccupation', "Inoccupation: ") !!}
-        {!! Form::text('inoccupation') !!} <br/><br/>
-
-
         {!! Form::submit('Enregistrer ', ['class' => 'btn btn-success']) !!}
     {!! Form::close() !!}
 
-	<a href="{{ URL::previous() }}">Retour</a>
+	<a href="{{ url('http://127.0.0.1:8000/personnes') }}">Retour</a>
 
 @endsection
 
 
-
-
-			
-          
-		  

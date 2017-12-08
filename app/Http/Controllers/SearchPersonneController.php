@@ -17,11 +17,11 @@ use App\Http\Controllers\DB;
 namespace App\Http\Controllers\Redirect\Controller;*/
 
 class SearchPersonneController extends Controller{
-    
+
 
     public function index(){
     	return view('search_bar'); //personne.personne view('search_bar.search_bar');
-    }		
+    }
 
     public function autocomplete(Request $request){
     	/*$term = $request->term;
@@ -46,9 +46,12 @@ class SearchPersonneController extends Controller{
 
 		//return back()->with('succes', 'Person searched is '.$request->id_nom_recherche);
 
+		$this->layout = null;
+		print_r('sfdsfsd');
+
 		if($request->ajax()){
 			$personnes = Personne::all();
-			$id_personne = $request->id_nom_recherche;//Input::get('id_nom_recherche');
+			$id_personne = $request->nom_recherche;      //Input::get('id_nom_recherche');
 			dd('id_personne: *** '.$id_personne);
 
 			//$query->where('nom', 'like', '%' . $request->get('search_bar') . '%');
@@ -60,6 +63,7 @@ class SearchPersonneController extends Controller{
 			}else{
 				return back()->with('success','Veuillez entrer une donnée svp');
 			}
+
 		}
 
 
